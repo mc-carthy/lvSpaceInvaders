@@ -13,6 +13,12 @@ function Bullet:new(params)
     inst.x, inst.y = params.x - inst.w / 2, params.y - inst.h / 2
     inst.speed = speed
     inst.colour = colour
+    inst.boundary = {
+        minX = params.boundaryMinX or 0,
+        maxX = params.boundaryMaxX or love.graphics.getWidth(),
+        minY = params.boundaryMinY or 0,
+        maxY = params.boundaryMaxY or love.graphics.getHeight()
+    }
 
     setmetatable(inst, self)
     return inst
