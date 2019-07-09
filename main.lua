@@ -1,7 +1,10 @@
 local Player = require('src.entities.player')
 local Bullet = require('src.entities.bullet')
+local EntityManager = require('src.entities.entityManager')
 
 function love.load()
+    EM = EntityManager:new()
+
     player = Player:new{
         x = love.graphics.getWidth() / 2,
         y = love.graphics.getHeight() - 40
@@ -10,16 +13,17 @@ function love.load()
         x = love.graphics.getWidth() / 2,
         y = love.graphics.getHeight()
     }
+    
+    EM:add(player)
+    EM:add(bullet)
 end
 
 function love.update(dt)
-    player:update(dt)
-    bullet:update(dt)
+    EM:update(dt)
 end
 
 function love.draw()
-    player:draw()
-    bullet:draw()
+    EM:draw()
 end
 
 function love.keypressed(key)

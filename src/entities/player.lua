@@ -1,3 +1,5 @@
+local Bullet = require('src.entities.bullet')
+
 local Player = {}
 
 local width = 60
@@ -38,7 +40,11 @@ function Player:draw()
 end
 
 function Player:fire()
-    print('fire!')
+    local bullet = Bullet:new{
+        x = self.x + self.w / 2,
+        y = self.y
+    }
+    EM:add(bullet)
 end
 
 return Player
